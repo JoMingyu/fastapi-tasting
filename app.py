@@ -1,6 +1,7 @@
 from enum import Enum
 
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI(title="FastAPI 시식회", docs_url=None, redoc_url="/docs", openapi_url=None)
 
@@ -44,3 +45,15 @@ def get_file(file_path):
 @app.get("/bool/{x}")
 def handle_bool_path_param(x: bool, q: bool):
     return {"path": x, "qs": q}
+
+
+class Item(BaseModel):
+    name: str
+    description: str
+    sellPrice: float
+    buyPrice: float
+
+
+@app.post("/items")
+def add_item(item: Item):
+    return item.dict()
