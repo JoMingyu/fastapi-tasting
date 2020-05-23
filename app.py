@@ -9,5 +9,15 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: int = None):
     return {"item_id": item_id, "q": q}
+
+
+@app.get("/users/me")
+async def read_user_me():
+    return {"user_id": "the current user"}
+
+
+@app.get("/users/{user_id}")
+async def read_user(user_id: str):
+    return {"user_id": user_id}
