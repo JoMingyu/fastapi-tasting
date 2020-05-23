@@ -34,3 +34,8 @@ class X(str, Enum):
 @app.get("/enum/{x}")
 def query_with_enum(x: X):
     return {"value": x}
+
+
+@app.get("/files/{file_path:path}")
+def get_file(file_path):
+    return {"path": file_path}
