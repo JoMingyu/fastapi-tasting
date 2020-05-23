@@ -39,3 +39,8 @@ def query_with_enum(x: X):
 @app.get("/files/{file_path:path}")
 def get_file(file_path):
     return {"path": file_path}
+
+
+@app.get("/bool/{x}")
+def handle_bool_path_param(x: bool, q: bool):
+    return {"path": x, "qs": q}
