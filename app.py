@@ -1,3 +1,5 @@
+from enum import Enum
+
 from fastapi import FastAPI
 
 app = FastAPI(title="FastAPI 시식회", docs_url=None, redoc_url="/docs", openapi_url=None)
@@ -21,3 +23,14 @@ async def read_user_me():
 @app.get("/users/{user_id}")
 async def read_user(user_id: str):
     return {"user_id": user_id}
+
+
+class X(str, Enum):
+    A = "a"
+    B = "b"
+    C = "c"
+
+
+@app.get("/enum/{x}")
+def query_with_enum(x: X):
+    return {"value": x}
